@@ -1,0 +1,15 @@
+step 1:
+     download file from mail
+step 2:
+    run a scheduler that will run this file after every  30-40 min 
+step 3:
+    when it downloaded then use ftp and push this data to 10.10.251.78 server
+
+step 4:
+    use job in sql server  that will fetch data from the particular location adn run this job after 30-40 min
+
+step 5:
+    load on sql server and join with hes table
+
+step 6:
+    represent of GRAFANA 
