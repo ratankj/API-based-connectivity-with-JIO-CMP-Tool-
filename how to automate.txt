@@ -1,0 +1,74 @@
+If you run your Python script in VS Code and then close VS Code, the script will stop running. 
+For your script to run continuously, even when VS Code is closed, you need to run it outside of the VS Code environment.
+
+Here are a few options to achieve this:
+
+### Option 1: Run the Script in the Background (Windows)
+You can run your script as a background process using the Command Prompt or PowerShell.
+
+1. **Command Prompt**:
+   - Open Command Prompt.
+   - Navigate to the directory where your script is located.
+   - Run the script in the background using the `start` command:
+     ```sh
+     start /min python your_script_name.py
+     ```
+
+2. **PowerShell**:
+   - Open PowerShell.
+   - Navigate to the directory where your script is located.
+   - Run the script in the background using the `Start-Process` cmdlet:
+     ```sh
+     Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList "your_script_name.py"
+     ```
+
+### Option 2: Task Scheduler (Windows)
+You can use the Task Scheduler to run your script at specified intervals, such as every hour.
+
+1. **Open Task Scheduler**:
+   - Search for "Task Scheduler" in the Windows search bar and open it.
+
+2. **Create a New Task**:
+   - In the "Actions" pane, click on "Create Basic Task...".
+   - Follow the wizard to set up your task:
+     - **Name**: Give your task a name (e.g., "Run Python Script").
+     - **Trigger**: Set it to trigger every hour.
+     - **Action**: Choose "Start a Program" and browse to your Python executable (`python.exe`). Add the path to your script as an argument.
+
+### Option 3: Using a Batch File
+You can create a batch file to run your script and use Task Scheduler to execute this batch file.
+
+1. **Create a Batch File**:
+   - Open Notepad and enter the following:
+     ```bat
+     @echo off
+     python C:\path\to\your_script_name.py
+     ```
+   - Save the file with a `.bat` extension (e.g., `run_script.bat`).
+
+2. **Schedule the Batch File**:
+   - Use the Task Scheduler to schedule this batch file to run every hour.
+
+### Example Task Scheduler Setup for a Python Script
+Here’s a step-by-step guide to set up Task Scheduler:
+
+1. **Open Task Scheduler**:
+   - Press `Win + R`, type `taskschd.msc`, and press Enter.
+
+2. **Create a Basic Task**:
+   - In the "Actions" pane, click "Create Basic Task".
+   - Follow the wizard:
+     - **Name**: Enter a name for the task (e.g., "Run Python Script Every Hour").
+     - **Trigger**: Choose "Daily" and set the repeat interval to 1 day.
+     - **Repeat Task**: Set it to repeat every hour for a duration of 1 day.
+
+3. **Action**:
+   - Choose "Start a Program".
+   - Program/script: Enter the path to your Python executable (e.g., `C:\Python39\python.exe`).
+   - Add arguments: Enter the path to your script (e.g., `C:\path\to\your_script_name.py`).
+
+4. **Finish**:
+   - Complete the wizard and ensure the task is enabled.
+
+### Conclusion
+Running the script via Task Scheduler is the most reliable way to ensure it runs at regular intervals even when VS Code is closed. This approach ensures that your script will run every hour regardless of whether VS Code is open or not.
