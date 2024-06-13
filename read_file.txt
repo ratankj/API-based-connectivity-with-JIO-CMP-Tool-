@@ -1,0 +1,10 @@
+Explanation
+Creating Outlook Application Object: win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI") creates an instance of the Outlook application.
+Selecting the Folder: inbox = outlook.Folders.Item("your_email@domain.com").Folders.Item(folder_name) selects the specified folder in your Outlook. Replace "your_email@domain.com" with your email address. Alternatively, inbox = outlook.GetDefaultFolder(6) selects the default inbox.
+Looping through Messages: The script loops through each message in the folder and checks if it is a mail item (message.Class == 43).
+Saving Attachments: For each attachment in a message, the script saves the attachment to the specified path.
+Customization
+Folder Name: Change folder_name to the desired folder (e.g., "Inbox", "Sent Items", etc.).
+Save Path: Ensure the save_path is a valid directory where you have write permissions.
+Note
+This script assumes you are running it on a Windows machine with Outlook installed. If you are using a different setup or need to access Outlook via an API (e.g., Microsoft Graph API for Office 365), the approach will differ and might require additional steps like authentication and API calls.
